@@ -1,11 +1,11 @@
-package com.coolweather.android.util;
+package com.dailyweather.android.util;
 
 import android.text.TextUtils;
 
-import com.coolweather.android.db.City;
-import com.coolweather.android.db.County;
-import com.coolweather.android.db.Province;
-import com.coolweather.android.gson.Weather;
+import com.dailyweather.android.db.City;
+import com.dailyweather.android.db.County;
+import com.dailyweather.android.db.Province;
+import com.dailyweather.android.gson.Weather;
 import com.google.gson.Gson;
 
 import org.json.JSONArray;
@@ -18,7 +18,7 @@ import org.json.JSONObject;
 
 public class Utility {
     /**
-     * Parsing and processing provincial data returned by the server;
+     * 解析省级数据
      */
     public static boolean handleProvinceResponse(String response){
         if (!TextUtils.isEmpty(response)){
@@ -83,7 +83,7 @@ public class Utility {
         return false;
     }
     /**
-     * Parsing the returned JSON data into a weather entity class;
+     * 将返回的JSON实体类解析成weather实体类；
      */
     public static Weather handleWeatherResponse(String response){
         try{

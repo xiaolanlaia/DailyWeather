@@ -1,4 +1,4 @@
-package com.coolweather.android;
+package com.dailyweather.android;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -20,15 +20,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.coolweather.android.gson.Forecast;
-import com.coolweather.android.gson.Suggestion;
-import com.coolweather.android.gson.Weather;
-import com.coolweather.android.service.AutoUpdateService;
-import com.coolweather.android.util.HttpUtil;
-import com.coolweather.android.util.Utility;
+import com.dailyweather.android.gson.Forecast;
+import com.dailyweather.android.gson.Weather;
+import com.dailyweather.android.service.AutoUpdateService;
+import com.dailyweather.android.util.HttpUtil;
+import com.dailyweather.android.util.Utility;
 
 import java.io.IOException;
-import java.io.StreamCorruptedException;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -111,23 +109,11 @@ public class WeatherActivity extends AppCompatActivity {
         });
     }
     /**
-     * Request the city weather information according to the weather ID;
+     * 根据天气id请求城市天气信息；
      */
     public void requestWeather(final String weatherId){
         String weatherUrl = "http://guolin.tech/api/weather?cityid="+weatherId+"&key=229fbc7f5ba54d23b6987c09b647970c";
         HttpUtil.sendOkHttpRequest(weatherUrl, new Callback() {
-            @Override
-            public void onFailure(Call call,IOException e){
-                e.printStackTrace();
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        Toast.makeText(WeatherActivity.this,"Failed to get weather information",Toast.LENGTH_SHORT).show();
-                        swipeRefresh.setRefreshing(false);
-                    }
-                });
-            }
-
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 final String responseText = response.body().string();
@@ -144,6 +130,17 @@ public class WeatherActivity extends AppCompatActivity {
                         }else {
                             Toast.makeText(WeatherActivity.this,"Failed to get weather information",Toast.LENGTH_SHORT).show();
                         }
+                        swipeRefresh.setRefreshing(false);
+                    }
+                });
+            }
+            @Override
+            public void onFailure(Call call,IOException e){
+                e.printStackTrace();
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(WeatherActivity.this,"获取天气信息失败",Toast.LENGTH_SHORT).show();
                         swipeRefresh.setRefreshing(false);
                     }
                 });

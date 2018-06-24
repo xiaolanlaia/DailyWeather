@@ -1,4 +1,4 @@
-package com.coolweather.android.gson;
+package com.dailyweather.android.gson;
 
 /**
  * Created by Administrator on 2017/12/15 0015.

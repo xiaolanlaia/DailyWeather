@@ -1,4 +1,4 @@
-package com.coolweather.android;
+package com.dailyweather.android;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -15,11 +15,11 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.coolweather.android.db.City;
-import com.coolweather.android.db.County;
-import com.coolweather.android.db.Province;
-import com.coolweather.android.util.HttpUtil;
-import com.coolweather.android.util.Utility;
+import com.dailyweather.android.db.City;
+import com.dailyweather.android.db.County;
+import com.dailyweather.android.db.Province;
+import com.dailyweather.android.util.HttpUtil;
+import com.dailyweather.android.util.Utility;
 
 import org.litepal.crud.DataSupport;
 
@@ -121,7 +121,7 @@ public class ChooseAreaFragment extends Fragment {
         queryProvinces();
     }
     /**
-     * Query all provinces of the country,priority from database query,if no,query to the server query;
+     * 查询全国所有的省，优先从数据库中查询，如果没有查询到再去服务端申请；
      */
     private void queryProvinces(){
         titleText.setText("中国");
